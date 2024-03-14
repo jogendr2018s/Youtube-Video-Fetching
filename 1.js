@@ -16,9 +16,8 @@ async function hello(text) {
 
 app.get('/', async (req, res) => {
     try {
-        console.log(req.query.text);
-        const jsonData = await hello(req.query.text);
-        console.log(jsonData);
+        var jsonData =''
+        if(req.query.text) jsonData = await hello(req.query.text);
         res.json(jsonData);
     } catch (error) {
         console.error("Error in processing request:", error);
