@@ -3,7 +3,11 @@ const express = require("express")
 const app = express()
 app.use(express.json());
 const cors = require('cors');
-
+app.use(cors());
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
 async function hello(text) {
     try {
         const a = await youtubesearchapi.GetListByKeyword(`${text}`, [false], [3], [{type: "video"}]);
